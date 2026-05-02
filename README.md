@@ -4,8 +4,8 @@ A full-stack web application for managing team projects and tasks with role-base
 
 ## 🔗 Live Demo
 
-- **Frontend:** team-task-manager-sigma-eosin.vercel.app
-- **Backend API:** team-task-manager-production-64b7.up.railway.app
+- **Frontend:** https://team-task-manager-sigma-eosin.vercel.app
+- **Backend API:** https://team-task-manager-production-64b7.up.railway.app
 
 ## ✨ Features
 
