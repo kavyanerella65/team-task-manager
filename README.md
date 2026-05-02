@@ -5,7 +5,7 @@ A full-stack web application for managing team projects and tasks with role-base
 ## 🔗 Live Demo
 
 - **Frontend:** https://your-app.vercel.app
-- **Backend API:** https://your-api.railway.app
+- **Backend API:** team-task-manager-production-64b7.up.railway.app
 
 ## ✨ Features
 
@@ -60,7 +60,7 @@ team-task-manager/
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/team-task-manager.git
+git clone https://github.com/kavyanerella65/team-task-manager.git
 cd team-task-manager
 ```
 
@@ -69,9 +69,8 @@ cd team-task-manager
 cd backend
 npm install
 cp .env.example .env
-# Edit .env with your MongoDB URI and JWT secret
 npm run dev
-# API running at http://localhost:5000
+
 ```
 
 ### 3. Frontend Setup
@@ -79,9 +78,8 @@ npm run dev
 cd frontend
 npm install
 cp .env.example .env
-# VITE_API_URL=http://localhost:5000/api
 npm run dev
-# App running at http://localhost:5173
+
 ```
 
 ## 🌍 API Endpoints
@@ -134,7 +132,7 @@ CLIENT_URL=https://your-app.vercel.app
 
 ### Frontend (.env)
 ```
-VITE_API_URL=https://your-api.railway.app/api
+VITE_API_URL=team-task-manager-production-64b7.up.railway.app
 ```
 
 ## 📄 License
