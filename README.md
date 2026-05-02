@@ -4,7 +4,7 @@ A full-stack web application for managing team projects and tasks with role-base
 
 ## 🔗 Live Demo
 
-- **Frontend:** https://your-app.vercel.app
+- **Frontend:** team-task-manager-sigma-eosin.vercel.app
 - **Backend API:** team-task-manager-production-64b7.up.railway.app
 
 ## ✨ Features
@@ -127,7 +127,6 @@ PORT=5000
 MONGO_URI=mongodb+srv://...
 JWT_SECRET=your_secret_key
 JWT_EXPIRES_IN=7d
-CLIENT_URL=https://your-app.vercel.app
 ```
 
 ### Frontend (.env)
