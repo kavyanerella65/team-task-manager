@@ -20,8 +20,8 @@ const Login = () => {
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          (err.response?.data?.errors?.[0]?.msg) ||
-          "Login failed. Please try again."
+        (err.response?.data?.errors?.[0]?.msg) ||
+        "Login failed. Please try again."
       );
     } finally {
       setLoading(false);
@@ -42,7 +42,6 @@ const Login = () => {
             <label>Email address</label>
             <input
               type="email"
-              placeholder="you@example.com"
               value={form.email}
               onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
               required
@@ -54,7 +53,6 @@ const Login = () => {
             <label>Password</label>
             <input
               type="password"
-              placeholder="Enter your password"
               value={form.password}
               onChange={(e) =>
                 setForm((p) => ({ ...p, password: e.target.value }))

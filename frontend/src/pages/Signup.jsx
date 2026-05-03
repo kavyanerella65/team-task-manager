@@ -25,8 +25,8 @@ const Signup = () => {
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          err.response?.data?.errors?.[0]?.msg ||
-          "Signup failed. Please try again."
+        err.response?.data?.errors?.[0]?.msg ||
+        "Signup failed. Please try again."
       );
     } finally {
       setLoading(false);
@@ -47,7 +47,6 @@ const Signup = () => {
             <label>Full Name</label>
             <input
               type="text"
-              placeholder="John Doe"
               value={form.name}
               onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
               required
@@ -59,7 +58,6 @@ const Signup = () => {
             <label>Email address</label>
             <input
               type="email"
-              placeholder="you@example.com"
               value={form.email}
               onChange={(e) =>
                 setForm((p) => ({ ...p, email: e.target.value }))
@@ -72,7 +70,6 @@ const Signup = () => {
             <label>Password</label>
             <input
               type="password"
-              placeholder="At least 6 characters"
               value={form.password}
               onChange={(e) =>
                 setForm((p) => ({ ...p, password: e.target.value }))
