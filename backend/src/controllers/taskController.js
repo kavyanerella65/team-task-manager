@@ -3,10 +3,19 @@ const Task = require("../models/Task");
 const Project = require("../models/Project");
 
 // Helper: check if user has access to project
-const userHasProjectAccess = async (projectId, userId) => {
+const userHasProjectAccess = async (projectId, userId, userRole) => {
   const project = await Project.findById(projectId);
   if (!project) return { access: false, project: null };
-  const isMember = project.members.some((m) => m.toString() === userId.toString());
+
+  // ✅ Allow admin always
+  if (userRole === "admin") {
+    return { access: true, project };
+  }
+
+  const isMember = project.members.some(
+    (m) => m.toString() === userId.toString()
+  );
+
   return { access: isMember, project };
 };
 
@@ -22,7 +31,7 @@ const createTask = async (req, res) => {
   try {
     const { title, description, projectId, assignedTo, dueDate } = req.body;
 
-    const { access, project } = await userHasProjectAccess(projectId, req.user._id);
+    await userHasProjectAccess(task.project, req.user._id, req.user.role);
     if (!project) return res.status(404).json({ message: "Project not found" });
     if (!access) return res.status(403).json({ message: "Access denied" });
 
@@ -62,7 +71,8 @@ const getTasksByProject = async (req, res) => {
   try {
     const { access, project } = await userHasProjectAccess(
       req.params.projectId,
-      req.user._id
+      req.user._id,
+      req.user.role
     );
     if (!project) return res.status(404).json({ message: "Project not found" });
     if (!access) return res.status(403).json({ message: "Access denied" });
@@ -93,7 +103,11 @@ const updateTaskStatus = async (req, res) => {
     const task = await Task.findById(req.params.id);
     if (!task) return res.status(404).json({ message: "Task not found" });
 
-    const { access } = await userHasProjectAccess(task.project, req.user._id);
+    const { access } = await userHasProjectAccess(
+      req.params.projectId,
+      req.user._id,
+      req.user.role
+    );
     if (!access) return res.status(403).json({ message: "Access denied" });
 
     task.status = status;
@@ -118,8 +132,9 @@ const updateTask = async (req, res) => {
     if (!task) return res.status(404).json({ message: "Task not found" });
 
     const { access, project } = await userHasProjectAccess(
-      task.project,
-      req.user._id
+      req.params.projectId,
+      req.user._id,
+      req.user.role
     );
     if (!access) return res.status(403).json({ message: "Access denied" });
 
@@ -158,7 +173,11 @@ const deleteTask = async (req, res) => {
     const task = await Task.findById(req.params.id);
     if (!task) return res.status(404).json({ message: "Task not found" });
 
-    const { access } = await userHasProjectAccess(task.project, req.user._id);
+    const { access } = await userHasProjectAccess(
+      req.params.projectId,
+      req.user._id,
+      req.user.role
+    );
     if (!access) return res.status(403).json({ message: "Access denied" });
 
     await task.deleteOne();
